@@ -10,6 +10,7 @@ import LocationPreview from "@/components/home/LocationPreview";
 import CTA from "@/components/home/CTA";
 import WhyChoose from "@/components/home/WhyChoose";
 import PropertiesHero from "@/components/property/PropertiesHero";
+import FarmVideo from "@/components/home/FarmVideo";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <PropertiesHero />
         <FeaturedProperties />
         <Lifestyle />
+        <FarmVideo />
         <GalleryPreview />
         <CTA />
       </main>
