@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,6 +16,7 @@ const navItems = [
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -79,14 +81,57 @@ export default function Navbar() {
 
         {/* Button */}
 
-        <Link
-          href="/contact"
-          className="rounded-full bg-[#C8A24F] px-6 py-3 font-semibold text-white transition hover:scale-105 hover:bg-[#b8913d]"
-        >
-          Book Visit
-        </Link>
+        <div className="flex items-center gap-4">
+
+  <Link
+    href="/contact"
+    className="hidden rounded-full bg-[#C8A24F] px-6 py-3 font-semibold text-white transition hover:scale-105 hover:bg-[#b8913d] md:block"
+  >
+    Book Visit
+  </Link>
+
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className={`md:hidden ${
+      scrolled ? "text-[#0A2342]" : "text-white"
+    }`}
+  >
+    {menuOpen ? <X size={32} /> : <Menu size={32} />}
+  </button>
+
+</div>
 
       </div>
+
+        {menuOpen && (
+  <div className="md:hidden bg-white shadow-lg">
+
+    <nav className="flex flex-col px-6 py-6">
+
+      {navItems.map((item) => (
+        <Link
+          key={item.name}
+          href={item.href}
+          onClick={() => setMenuOpen(false)}
+          className="border-b py-4 text-lg font-medium text-[#0A2342]"
+        >
+          {item.name}
+        </Link>
+      ))}
+
+      <Link
+        href="/contact"
+        onClick={() => setMenuOpen(false)}
+        className="mt-6 rounded-full bg-[#C8A24F] py-3 text-center font-semibold text-white"
+      >
+        Book Visit
+      </Link>
+
+    </nav>
+
+  </div>
+)}
+
     </header>
   );
 }
