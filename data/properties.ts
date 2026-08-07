@@ -30,6 +30,11 @@ export const properties = [
       "/images/properties/mogar/1.jpg",
       "/images/properties/mogar/2.jpg",
       "/images/properties/mogar/3.jpg",
+      "/images/properties/mogar/4.jpg",
+      "/images/properties/mogar/5.jpg",
+      "/images/properties/mogar/6.jpg",
+      "/images/properties/mogar/7.jpg",
+      "/images/properties/mogar/8.jpg",
     ],
 
     nearby: [
