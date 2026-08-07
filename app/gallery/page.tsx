@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 import Container from "@/components/ui/Container";
@@ -17,80 +15,53 @@ const images = [
   "/images/gallery/5.jpg",
   "/images/gallery/6.jpg",
   "/images/gallery/7.jpg",
+  "/images/gallery/8.jpg",
+  "/images/gallery/9.jpg",
+  "/images/gallery/10.jpg",
+  "/images/gallery/11.jpg",
 ];
 
 export default function GalleryPreview() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-[#FAF8F5] py-28">
       <Container>
-
         <SectionTitle
           eyebrow="Gallery"
           title="Experience The Lifestyle"
           description="A glimpse into the premium environment, infrastructure and natural beauty of HPS Farm Mogar."
         />
 
-        <div className="mt-20 grid grid-cols-12 gap-6">
+        <div className="mt-20 grid grid-cols-2 gap-6 lg:grid-cols-4 auto-rows-[220px]">
 
-          {/* Large Image */}
-
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: .7 }}
-            className="col-span-12 overflow-hidden rounded-[36px] lg:col-span-7"
-          >
-            <Image
-              src={images[0]}
-              alt=""
-              width={1200}
-              height={900}
-              className="h-[620px] w-full object-cover transition duration-700 hover:scale-105"
-            />
-          </motion.div>
-
-          {/* Right Grid */}
-
-          <div className="col-span-12 grid gap-6 lg:col-span-5">
-
-            <div className="grid grid-cols-2 gap-6">
-
-  {images.slice(1).map((img) => (
-
-    <motion.div
-      key={img}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: .5 }}
-      className="overflow-hidden rounded-[28px]"
-    >
-
-      <Image
-        src={img}
-        alt=""
-        width={600}
-        height={600}
-        unoptimized
-        className="h-[295px] w-full object-cover transition duration-700 hover:scale-110"
-      />
-
-    </motion.div>
-
-  ))}
-
-</div>
-
-          </div>
+          {images.map((img, index) => (
+            <motion.div
+              key={img}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.05,
+              }}
+              className={`
+                overflow-hidden rounded-[28px]
+                ${index === 0 ? "col-span-2 row-span-2" : ""}
+                ${index === 5 ? "row-span-2" : ""}
+                ${index === 9 ? "col-span-2" : ""}
+              `}
+            >
+              <Image
+                src={img}
+                alt={`Gallery ${index + 1}`}
+                width={1000}
+                height={1000}
+                unoptimized
+                className="h-full w-full object-cover transition duration-700 hover:scale-110"
+              />
+            </motion.div>
+          ))}
 
         </div>
-
-        <div className="mt-16 flex justify-center">
-
-
-        </div>
-
       </Container>
     </Section>
   );
